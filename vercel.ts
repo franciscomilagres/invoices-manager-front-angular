@@ -1,14 +1,8 @@
-// Read your secret backend URL from Vercel's environment variables
-const backendUrl = process.env.BACKEND_URL || 'https://fallback-backend.com';
+import { routes, deploymentEnv, type VercelConfig } from '@vercel/config/v1';
 
-// Construct the full string destination prior to assigning it to the object
-const apiDestination = backendUrl + '/api/$1';
 
 export const config = {
   rewrites: [
-    {
-      source: '/api/(.*)',
-      destination: apiDestination
-    }
+    routes.rewrite('/api/(.*)', `${deploymentEnv('BACKEND_URL')}/api`)
   ]
 };
