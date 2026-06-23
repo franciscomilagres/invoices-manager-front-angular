@@ -1,8 +1,8 @@
-import { routes, deploymentEnv, type VercelConfig } from '@vercel/config/v1';
+import { routes } from '@vercel/config/v1';
 
 
 export const config = {
   rewrites: [
-    routes.rewrite('/api/(.*)', `${deploymentEnv('API_BASE_URL')}/api/$1`)
+    routes.rewrite('/api/(.*)', 'https://invoices-manager-back.vercel.app/api/$1')
   ]
 };
