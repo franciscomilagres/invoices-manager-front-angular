@@ -1,10 +1,13 @@
 import { HttpClient } from "@angular/common/http";
-import { inject } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { ImCustomer } from "../shared/models/customer.model";
 
 const CUSTOMERS_API = '/api/customers';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class CustomerService {
   private http = inject(HttpClient);
 
