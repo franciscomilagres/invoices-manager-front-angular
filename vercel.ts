@@ -1,12 +1,14 @@
-import type { VercelConfig, routes } from '@vercel/config/v1';
-
 // Read your secret backend URL from Vercel's environment variables
 const backendUrl = process.env.BACKEND_URL || 'https://fallback-backend.com';
 
-export const config: VercelConfig = {
+// Construct the full string destination prior to assigning it to the object
+const apiDestination = backendUrl + '/api/$1';
+
+export const config = {
   rewrites: [
-    routes.rewrite('/api/(.*)', `${backendUrl}/api/$1`)
+    {
+      source: '/api/(.*)',
+      destination: apiDestination
+    }
   ]
 };
-
-export default config;
